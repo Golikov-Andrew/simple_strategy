@@ -1,0 +1,23 @@
+{
+  "name": "simple-strategy-pack",
+  "version": "1.0.0",
+  "description": "initial settings for js",
+  "main": "index.js",
+  "author": "Golikov Andrew",
+  "license": "ISC",
+  "repository": {},
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "dev": "webpack --mode development --watch",
+    "app": "webpack --mode production"
+  },
+  "dependencies": {
+    "jquery": "^3.7.0"
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.7.6",
+    "webpack": "^5.89.0",
+    "webpack-bundle-tracker": "^2.0.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

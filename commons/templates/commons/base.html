@@ -1,0 +1,81 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="{% static 'commons/favicon.ico' %}">
+    <title>tudushnik | {{ title }}</title>
+
+    <link rel="stylesheet" href="{% static 'commons/css/styles.css' %}">
+    <input type="text" hidden value="{{ csrf_token }}" name="csrfmiddlewaretoken">
+    {% block local_styles %}
+    {% endblock local_styles %}
+</head>
+<body>
+<div class="wrapper">
+
+
+        <header class="header-container">
+
+            <div class="logo-container">
+                <h1>SIMPLE_STRATEGY</h1>
+            </div>
+
+            <nav class="navbar-container">
+                <a class="{{ title|create_class_of_navbar_link_by_title:'Главная' }}"
+                   href="{% url 'homepage' %}">Главная</a>
+                {% if request.user.is_authenticated %}
+                    <a class="{{ title|create_class_of_navbar_link_by_title:'Рейтинг' }}"
+                       href="">Рейтинг</a>
+                    <a class="{{ title|create_class_of_navbar_link_by_title:'Одиночная игра' }}"
+                       href="{% url 'single_player_page' %}">Одиночная игра</a>
+                    <a class="{{ title|create_class_of_navbar_link_by_title:'Мультиплеер' }}"
+                       href="">Мультиплеер</a>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <a class="{{ title|create_class_of_navbar_link_by_title:'Админка' }}" href="/admin">Админка</a>
+                {% endif %}
+            </nav>
+
+            <div class="profile-container">
+                {% if request.user.is_authenticated %}
+                    <a class="navbar-link" href="{% url 'profile' %}">Профиль</a>
+                    <a class="navbar-link" href="{% url 'logout' %}">Выйти</a>
+                {% else %}
+                    <a class="navbar-link" href="{% url 'login' %}">Войти</a>
+                    <a class="navbar-link" href="{% url 'register' %}">Регистрация</a>
+                {% endif %}
+            </div>
+
+        </header>
+
+        <div id="content-container">
+            <div class="page-sidebar-left">
+                {% block sidebar_left %}
+                {% endblock sidebar_left %}
+            </div>
+
+            <div class="page-content">
+
+                {% block content %}
+                {% endblock content %}
+            </div>
+
+            <div class="page-sidebar-right">
+                {% block sidebar_right %}
+                {% endblock sidebar_right %}
+            </div>
+
+        </div>
+
+</div>
+
+
+<script type="text/javascript" src="{% static 'webpack_bundles/commons.js' %}"></script>
+{% block local_scripts %}
+{% endblock local_scripts %}
+</body>
+</html>

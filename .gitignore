@@ -1,0 +1,14 @@
+.env
+venv
+data
+
+__pycache__/
+*/__pycache__/
+*.py[cod]
+.pyc
+*.pyc
+.idea/
+
+.pytest_cache
+node_modules
+

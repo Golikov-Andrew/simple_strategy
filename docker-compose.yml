@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  ss_db:
+    container_name: ss_postgres
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: "${SS_DATABASE_DTBS}"
+      POSTGRES_USER: "${SS_DATABASE_USER}"
+      POSTGRES_PASSWORD: "${SS_DATABASE_PSWD}"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+     - "5456:5432"
+    volumes:
+      # - ./data:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - ss
+    
+  ss_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+#    image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    environment:
+      POSTGRES_DB: "${SS_DATABASE_DTBS}"
+      POSTGRES_USER: "${SS_DATABASE_USER}"
+      POSTGRES_PASSWORD: "${SS_DATABASE_PSWD}"
+    depends_on:
+      - ss_db
+    ports:
+      - "8000:8000"
+    command: python3 /usr/src/app_ss/manage.py runserver 0.0.0.0:8000
+    #command: python3 /usr/src/app_ss/manage.py migrate && python3 /usr/src/app_ss/manage.py collectstatic && python3 /usr/src/app_ss/manage.py createsuperuser && python3 manage.py runserver 0.0.0.0:8000
+    #command: bash init.sh && python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app_ss
+    networks:
+      - ss
+
+networks:
+  ss:
+    driver: bridge

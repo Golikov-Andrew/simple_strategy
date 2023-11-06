@@ -1,0 +1,14 @@
+{
+  "status": "done",
+  "assets": {
+    "commons.js": {
+      "name": "commons.js",
+      "path": "/usr/src/app_ss/assets/webpack_bundles/commons.js"
+    }
+  },
+  "chunks": {
+    "commons": [
+      "commons.js"
+    ]
+  }
+}
