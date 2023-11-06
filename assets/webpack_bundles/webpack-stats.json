@@ -4,11 +4,26 @@
     "commons.js": {
       "name": "commons.js",
       "path": "/usr/src/app_ss/assets/webpack_bundles/commons.js"
+    },
+    "dirname/7e10b486d4f12085211a025279a80b07.png": {
+      "name": "dirname/7e10b486d4f12085211a025279a80b07.png",
+      "path": "/usr/src/app_ss/assets/webpack_bundles/dirname/7e10b486d4f12085211a025279a80b07.png"
+    },
+    "play_game.js": {
+      "name": "play_game.js",
+      "path": "/usr/src/app_ss/assets/webpack_bundles/play_game.js"
+    },
+    "play_game.js.map": {
+      "name": "play_game.js.map",
+      "path": "/usr/src/app_ss/assets/webpack_bundles/play_game.js.map"
     }
   },
   "chunks": {
     "commons": [
       "commons.js"
+    ],
+    "play_game": [
+      "play_game.js"
     ]
   }
 }

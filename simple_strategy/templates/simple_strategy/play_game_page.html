@@ -1,0 +1,24 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block local_styles %}
+    <link rel="stylesheet" href="{% static 'simple_strategy/css/ss_main.css' %}">
+{% endblock local_styles %}
+
+{% block content %}
+
+    <h2>{{ game.title }}</h2>
+    <div><button id="btn_next_player">Передать Ход</button></div>
+    <div>
+        <canvas id="game_canvas" width="{{ game.width }}" height="{{ game.height }}">
+
+        </canvas>
+    </div>
+    <div id="dashboard"></div>
+
+{% endblock content %}
+
+
+{% block local_scripts %}
+    <script type="text/javascript" src="{% static 'webpack_bundles/play_game.js' %}"></script>
+{% endblock local_scripts %}

@@ -8,7 +8,8 @@ module.exports = {
     context: __dirname,
     devtool: "source-map",
     entry: {
-        commons: './commons/static/commons/js/main.js'
+        commons: './commons/static/commons/js/main.js',
+        play_game: './simple_strategy/static/simple_strategy/js/main.js'
     },
     output: {
         path: path.resolve('./assets/webpack_bundles/'),
@@ -27,6 +28,17 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     "css-loader",
                     "sass-loader",
+                ],
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'dirname/[contenthash].[ext]',
+                        },
+                    },
                 ],
             },
         ],

@@ -1,7 +1,20 @@
 {% extends 'commons/base.html' %}
 
 {% block content %}
-    <button>Создать Игру</button>
+    <a href="{% url 'create_game' %}">Создать Игру</a>
+    <table>
+        {% for game in games %}
+            <tr>
+            <td>
+                {{ game.title }}
+            </td>
+            <td>
+                <a href="{% url 'play_game' game.pk %}">Play</a>
+            </td>
+            </tr>
+
+        {% endfor %}
+    </table>
 
 {% endblock content %}
 
